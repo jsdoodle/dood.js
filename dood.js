@@ -1,16 +1,10 @@
 (function (window, undefined) {
 		window.dood = new Function();
 		
-		// Easier understanding of "extending" the dood prototype
-		dood.prototype.extend = function (name, fn) {
-			dood.prototype[name] = fn;
-			dood[name] = fn;
-		};
-		
 		// ==================================== //
 		//  BLUEPRINT - SIMPLE TEMPLATE ENGINE  //
 		// ==================================== //
-		dood.extend("blueprint", function(a, b, c) {
+		dood.blueprint = function(a, b, c) {
 			var proto = dood.blueprint.prototype;
 			if (a === "set" && b) {
 				proto.templates = proto.templates || {};
@@ -39,7 +33,7 @@
 			}
 			
 			return "Error calling dood.blueprint";		
-		});
+		};
 		
 		
 		return;
