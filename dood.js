@@ -4,6 +4,7 @@
 		// Easier understanding of "extending" the dood prototype
 		dood.prototype.extend = function (name, fn) {
 			dood.prototype[name] = fn;
+			dood[name] = fn;
 		};
 		
 		// ==================================== //
