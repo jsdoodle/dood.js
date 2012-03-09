@@ -1,5 +1,5 @@
 (function (window, undefined) {
-		var dood = window.dood = new Function();
+		window.dood = new Function();
 		
 		// Easier understanding of "extending" the dood prototype
 		dood.prototype.extend = function (name, fn) {
