@@ -40,9 +40,9 @@ dood.blueprint = function (a /* (STRING) "set" or template name. If "set", must 
         proto.templates = proto.templates || {};
         proto.templates[b] = (function () {
             if (typeof c === "String") {
-                returnData = String(c);
+                return String(c);
             } else {
-                returnData = c.innerHTML || c[0].innerHTML || c.toString() || null;
+                return c.innerHTML || c[0].innerHTML || c.toString() || null;
             }
         })();
     } else if (proto.templates[a]) {
