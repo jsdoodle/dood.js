@@ -30,7 +30,7 @@ var dood = dood || {};
 
 dood.blueprint = function (a /* (STRING) "set" or template name. If "set", must have b and c */, 
 						   b /* (STRING) if a = "set" then b = template name. Otherwise, b = data */,
-						   c /* (HTML Object || Jquery Element). If a = "set", c will be the template */,) {
+						   c /* (HTML Object || Jquery Element). If a = "set", c will be the template */) {
 						   
 	// Shortcut to dood's prototype 
     var proto = dood.blueprint.prototype,
