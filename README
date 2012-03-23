@@ -1,1 +1,14 @@
-Hello World!
+== Updates ==
+
+=== dood.js ===
+v0.1.1: Added update to blueprint. Added "dood.hash" function. Get document.location.hash using dood.hash() or set using dood.hash("value").
+
+=== BluePrint ===
+v0.1.1: You can now use Function's as data values for templating. Example:
+dood.blueprint("myTemplate", {
+	"name": function(val) {
+		return "<b>" + val + "</b>";
+	},
+	
+	"desc": "Buisness"
+});
