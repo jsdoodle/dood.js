@@ -1,4 +1,4 @@
-# Dood.js
+# dood.js
 ___
 
 #### What is dood.js?
@@ -12,7 +12,6 @@ Of course.  You are free to use, modify, distribute, or fork it as long as the f
 <br /><br /><br />
 ___
 ## Updates
-___
 
 ### dood.js
 **v0.1.1**:<br />
@@ -29,7 +28,7 @@ ___
 <pre><code>
 dood.blueprint("myTemplate", {
 	"name": function(val) {
-		return "<b>" + val + "</b>";
+		return "&lt;b&gt;" + val + "&lt;/b&gt;";
 	},
 	
 	"desc": "Buisness"
