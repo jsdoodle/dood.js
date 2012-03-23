@@ -1,6 +1,6 @@
 var dood = dood || {};
 
-// dood.blueprint - A simple template engine
+// dood.blueprint - A simple template engine v0.1.1
 /*
 	To create and set a default template, do:
 	dood.blueprint("set", [name of template], [html template]);
@@ -27,36 +27,45 @@ var dood = dood || {};
 	var myResult = dood.blueprint("template1", myData); 
 	document.body.innerHTML = myResult;
 */
-dood.blueprint = function (a, b, c) {
-	var proto = dood.blueprint.prototype;
 
-	if (a === "set" && b) {
-		proto.templates = proto.templates || {};
-		proto.templates[b] = (function() {
-			if (typeof c === "string") {
-				return String(c);
-			} else {
-				return c.innerHTML || c[0].innerHTML || c.toString() || null;
-			}
-		})();
-	} else {
-		if (proto.templates[a]) {
+dood.blueprint = function (a /* (STRING) "set" or template name. If "set", must have b and c */, 
+						   b /* (STRING) if a = "set" then b = template name. Otherwise, b = data */,
+						   c /* (HTML Object || Jquery Element). If a = "set", c will be the template */,) {
+						   
+	// Shortcut to dood's prototype 
+    var proto = dood.blueprint.prototype,
+		returnData;
+
+    if (a === "set" && b) {
+        proto.templates = proto.templates || {};
+        proto.templates[b] = (function () {
+            if (typeof c === "String") {
+                returnData = String(c);
+            } else {
+                returnData = c.innerHTML || c[0].innerHTML || c.toString() || null;
+            }
+        })();
+    } else if (proto.templates[a]) {
 			var temp = proto.templates[a];
-			
+
 			if (jQuery) {
-				jQuery.each(b, function(d, e) {
-					temp = temp.replace("{{" + d + "}}", e);
+				jQuery.each(b, function (d, e) {
+					if (typeof e !== "Function") {
+						temp = temp.replace("{{" + d + "}}", e);
+					} else {
+						temp = String(e()) || "";
+					}
 				});
 			} else {
+				// Does this actually work? o.O
 				for (var i in b) {
-					// ??
 					temp = temp.replace("{{" + b[i] + "}}", b[i][0]);
 				}
 			}
-			
-			return temp;
+
+			returnData = temp;
 		}
-	}
-	
-	return "Error calling dood.blueprint";
+    }
+
+    return returnData;
 }
