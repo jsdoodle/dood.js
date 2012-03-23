@@ -65,7 +65,6 @@ dood.blueprint = function (a /* (STRING) "set" or template name. If "set", must 
 
 			returnData = temp;
 		}
+		
+		return returnData;
     }
-
-    return returnData;
-}
