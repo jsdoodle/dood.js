@@ -70,25 +70,29 @@
 		var inputs = document.getElementsByTagName("input"),
 		    length = inputs.length;
 		
-		while (length--) {   
+		while (length--) {
 		    var anInput = inputs[length],
 		        placehold = anInput.getAttribute("data-placeholder");
 		
-		    if (!anInput.value) {
-		        anInput.value = placehold;
+		    if (placehold) {
+		        if (!anInput.value) {
+		            anInput.value = placehold;
+		        }
+		
+		        anInput.addEventListener("focus", function() {
+		            if (this.value == this.getAttribute("data-placeholder")) {
+		                this.value = "";
+		            }
+		        });
+		
+		        anInput.addEventListener("blur", function() {
+		            if (!this.value) {
+		                this.value = this.getAttribute("data-placeholder");
+		            }
+		        });
+		    } else {
+		        // Do nothing!   
 		    }
-		
-		    anInput.addEventListener("focus", function() {
-		        if (this.value == this.getAttribute("data-placeholder")) {
-		            this.value = "";
-		        }
-		    });
-		
-		    anInput.addEventListener("blur", function() {       
-		        if (!this.value) {
-		            this.value = this.getAttribute("data-placeholder");
-		        }
-		    });
 		}​
        }; // End placehold
 	
