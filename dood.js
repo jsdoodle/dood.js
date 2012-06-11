@@ -15,7 +15,7 @@
     // ==================================== //
 	dood.blueprint = function (a /* (STRING) "set" or template name. If "set", must have b and c */,
 	                           b /* (STRING) if a = "set" then b = template name. Otherwise, b = data */,
-                               c /* (HTML Object || Jquery Element). If a = "set", c will be the template */,) {
+                                   c /* (HTML Object || Jquery Element). If a = "set", c will be the template */) {
 							   
 		// Shortcut to dood's prototype 
 		var proto = dood.blueprint.prototype,
@@ -56,6 +56,40 @@
 	}
 	// End blueprint
 
+
+       // __________________________________________________________________
+       //
+       // Allows for backwards compatibility of the "placeholder" attribute
+       // on input elements.
+       //
+       // Important: Use "data-placeholder" instead for best results!
+       // __________________________________________________________________
+       
+       dood.placehold = function () {
+		var inputs = document.getElementsByTagName("input"),
+		    length = inputs.length;
+		
+		while (length--) {   
+		    var anInput = inputs[length],
+		        placehold = anInput.getAttribute("data-placeholder");
+		
+		    if (!anInput.value) {
+		        anInput.value = placehold;
+		    }
+		
+		    anInput.addEventListener("focus", function() {
+		        if (this.value == this.getAttribute("data-placeholder")) {
+		            this.value = "";
+		        }
+		    });
+		
+		    anInput.addEventListener("blur", function() {       
+		        if (!this.value) {
+		            this.value = this.getAttribute("data-placeholder");
+		        }
+		    });
+		}​
+       }; // End placehold
 	
 	
 	// ---
