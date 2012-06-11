@@ -63,6 +63,7 @@
        // on input elements.
        //
        // Important: Use "data-placeholder" instead for best results!
+       // Example: http://jsfiddle.net/Xp6b5/
        // __________________________________________________________________
        
        dood.placehold = function () {
